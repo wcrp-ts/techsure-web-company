@@ -1,0 +1,137 @@
+body {
+  @apply font-sans;
+}
+
+.ant-typography,
+.ant-select,
+.ant-form-item-explain-error,
+.ant-input,
+.ant-menu,
+.ant-input-number-input,
+.ant-select-item,
+.ant-radio-label,
+.ant-btn,
+.ant-form-item .ant-form-item-label,
+.ant-segmented-item,
+.ant-tabs,
+.ant-picker-input input,
+.ant-picker-dropdown,
+.ant-picker-cell-inner,
+.ant-empty-description,
+.ant.checkbox-label,
+.ant-slider-mark-text,
+.ant-table-pagination {
+  font-family: 'Noto Sans Thai' !important;
+}
+
+.ant-form-item-label > label::after {
+  content: none !important;
+}
+
+.ant-input-number .ant-input-number-input {
+  text-align: left;
+}
+
+.ant-checkbox-wrapper-disabled {
+  cursor: not-allowed;
+  background-color: #B1CDFB;
+  padding: 0;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: white;
+}
+
+.ant-checkbox-wrapper > span:last-child {
+  @apply text-label-m;
+}
+
+
+.ant-slider .ant-slider-handle::after {
+  content: none !important;
+  cursor: none !important;
+  box-shadow: none !important;
+
+}
+
+
+
+.ant-tag {
+  font-size: 14px;
+  font-family: 'Noto Sans Thai';
+  border: none !important;
+}
+
+.ant-table-row > .ant-table-cell-row-hover {
+  background-color: #E9F1FD !important;
+  transition: none;
+}
+
+/* Notification Styling  */
+.ant-notification {
+  top: 90px !important;
+}
+
+.ant-notification .ant-notification-notice-wrapper .ant-notification-notice {
+  background-color: #E9F6E8;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Noto Sans Thai';
+}
+
+/* List Custom Styling */
+.ant-list {
+  border: none !important;
+}
+
+.ant-list-split .ant-list-header {
+  border-block-end: none !important;
+  background: #f5f7fa;
+  border-radius: 8px;
+  padding-inline: 24px;
+}
+
+.ant-list-split .ant-list-item {
+  padding-inline: 46px !important;
+  border-block-end: 1px solid #B1CDFB;
+}
+
+
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+  .ant-notification {
+    top: 70px !important;
+    width: 90% !important;
+    left: 5% !important;
+    right: 5% !important;
+  }
+
+  .ant-list-split .ant-list-header,
+  .ant-list-split .ant-list-item {
+    padding-inline: 16px !important;
+  }
+
+  .table-cell {
+    -webkit-line-clamp: 1;
+  }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+  .ant-btn {
+    padding: 4px 8px !important;
+  }
+
+  .ant-form-item-label > label {
+    font-size: 12px;
+  }
+
+  .ant-tabs-tab {
+    padding: 6px 12px !important;
+    font-size: 12px;
+  }
+}
+
