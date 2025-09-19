@@ -1,4 +1,4 @@
-import { Row, Col, Typography, Flex } from "antd";
+import { Typography, Flex } from "antd";
 
 import softwareIcon from "../../../../assets/Icons/CodeBlock.png";
 import hardwareIcon from "../../../../assets/Icons/GearSix.png";
