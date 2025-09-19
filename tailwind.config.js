@@ -8,7 +8,7 @@ export default {
     extend: { 
       colors: {
         text: {
-          title: '#292c30',
+          title: '#FFFFFF',
           subtitle: '#A2ABB5',
           body: '#292c30',
           caption: '#8b96a2',

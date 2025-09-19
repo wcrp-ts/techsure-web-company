@@ -9,7 +9,7 @@ const AppLayout = () => {
     <Layout style={{ minHeight: "100vh" }} className="bg-background-default">
       <AppHeader />
 
-      <Content style={{ padding: "24px" }}>
+      <Content >
         <Outlet />
       </Content>
 
