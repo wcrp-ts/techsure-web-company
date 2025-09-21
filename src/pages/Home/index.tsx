@@ -4,7 +4,7 @@ import HeroSection from "./components/HeroSection";
 import TrustedBy from "./components/TrustedBy";
 import ValuesSection from "./components/ValuesSection";
 import ServicesSection from "./components/ServicesSection/ServicesSection";
-import ProductSection from "./components/ProductSection";
+import ProductSection from "./components/ProductSection/ProductSection";
 import EventSection from "./components/EventSection/EventSection";
 
 const Home = () => {
@@ -71,13 +71,13 @@ const Home = () => {
               pointerEvents: "none",
               translateX: "-50%",
               translateY: "-50%",
-              zIndex: 0,
+              zIndex: 10,
             }}
           />
         )}
       </AnimatePresence>
 
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div style={{ position: "relative", zIndex: 50}}>
         <HeroSection />
         <TrustedBy />
         <ValuesSection />
@@ -86,9 +86,8 @@ const Home = () => {
         <div ref={servicesRef}>
           <ServicesSection />
           <ProductSection />
+          <EventSection />
         </div>
-
-        <EventSection />
       </div>
     </div>
   );

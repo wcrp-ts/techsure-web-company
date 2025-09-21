@@ -1,11 +1,11 @@
 import { Typography } from "antd";
-import kmitlLogo from "../../../assets/kmitlLogo.png";
-import kuLogo from "../../../assets/kuLogo.png";
-import craLogo from "../../../assets/craLogo.png";
-import nhaLogo from "../../../assets/nhaLogo.png";
-import exatLogo from "../../../assets/exatLogo.png";
-import irpcLogo from "../../../assets/irpcLogo.png";
-import easyLogo from "../../../assets/easyriceLogo.png";
+import kmitlLogo from "../../../assets/logo/kmitlLogo.png";
+import kuLogo from "../../../assets/logo/kuLogo.png";
+import craLogo from "../../../assets/logo/craLogo.png";
+import nhaLogo from "../../../assets/logo/nhaLogo.png";
+import exatLogo from "../../../assets/logo/exatLogo.png";
+import irpcLogo from "../../../assets/logo/irpcLogo.png";
+import easyLogo from "../../../assets/logo/easyriceLogo.png";
 
 const { Text } = Typography;
 

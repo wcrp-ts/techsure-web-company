@@ -1,110 +1,134 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { Typography, Button, Flex } from "antd";
-import { motion, useAnimation } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import image1 from "../../../../assets/project/air304.png";
+import image2 from "../../../../assets/project/dcim.png";
+import image3 from "../../../../assets/project/mower.png";
+import image4 from "../../../../assets/project/water304.png";
 import "./EventSection.css";
-import imageSlide from "../../../../assets/image.png";
 
 const { Text } = Typography;
 
 const cardData = [
-  {
-    img: imageSlide,
-    title: "AI Solutions",
-    description: "Innovative AI software that enhances hardware capabilities and drives new solutions.",
-  },
-  {
-    img: imageSlide,
-    title: "Hardware Optimization",
-    description: "Cutting-edge hardware design that maximizes performance and efficiency.",
-  },
-  {
-    img: imageSlide,
-    title: "Software Development",
-    description: "Custom software tailored for enterprise solutions and AI integration.",
-  },
-  {
-    img: imageSlide,
-    title: "Tech Innovations",
-    description: "Combining software, AI, and hardware to create futuristic solutions.",
-  },
+  { img: image1, title: "Be curious.", description: "We believe that progress starts with curiosity..." },
+  { img: image2, title: "Growth by doing.", description: "Most of our team consists of people born and bred..." },
+  { img: image3, title: "Take responsibility.", description: "This requires trust in ourselves and in cooperation..." },
+  { img: image4, title: "Make others successful.", description: "Growing together is the ultimate compliment..." },
 ];
 
-const CARD_WIDTH = 760;
-const GAP = 24;
-
 const EventSection = () => {
-  const controls = useAnimation();
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  // Function to center the active card
-  const centerCard = (index: number) => {
-    if (!sliderRef.current) return;
-    const containerWidth = sliderRef.current.offsetWidth;
-    const totalCardWidth = CARD_WIDTH + GAP;
-    const newX = containerWidth / 1 - totalCardWidth * index - CARD_WIDTH / 1;
-    controls.start({ x: newX, transition: { duration: 0.8, ease: "easeInOut" } });
+  const handleNext = () => {
+    if (currentIndex < cardData.length - 1) {
+      setDirection(1);
+      setCurrentIndex((prev) => prev + 1);
+    }
   };
 
-  // Center first card on mount
-  useEffect(() => {
-    centerCard(activeIndex);
-  }, []);
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setDirection(-1);
+      setCurrentIndex((prev) => prev - 1);
+    }
+  };
 
-  // Auto-slide
-  useEffect(() => {
-    let currentIndex = activeIndex;
-    const interval = setInterval(() => {
-      if (!paused) {
-        currentIndex = (currentIndex + 1) % cardData.length;
-        setActiveIndex(currentIndex);
-        centerCard(currentIndex);
-      }
-    }, 3000);
+  const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction === 1 ? 300 : -300,
+      scale: 0.5,
+      opacity: 0,
+    };
+  },
+  center: {
+    x: 0,
+    scale: 1,
+    opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      x: direction === 1 ? -300 : 300,
+      scale: 0.5,
+      opacity: 0,
+    };
+  },
+};
 
-    return () => clearInterval(interval);
-  }, [paused]);
 
   return (
-    <Flex vertical className="justify-center items-center mb-40 mt-52">
-      <Text className="text-heading-xl text-text-title font-bold">
-        Our Achievement and Event
-      </Text>
+    <div className="event-section-container pl-80 mb-40">
+      <div className="columns">
 
-      <div
-        className="slider-container"
-        ref={sliderRef}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <motion.div className="card-slider" animate={controls}>
-          {cardData.map((card, i) => {
-            const isActive = i === activeIndex;
-            return (
-              <motion.div
-                key={i}
-                className="card"
-                animate={{ scale: isActive ? 1 : 0.85, opacity: isActive ? 1 : 0.6 }}
-                transition={{ duration: 0.5 }}
-              >
-                <img src={card.img} alt={card.title} className="card-image" />
+        <div className="left-column">
+          <AnimatePresence custom={direction} mode="wait">
+            <motion.div
+              key={currentIndex}
+              className="left-wrapper"
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+            >
+              <img
+                src={cardData[currentIndex].img}
+                alt={cardData[currentIndex].title}
+                className="main-image"
+              />
+              <Flex vertical className="active-text">
+                <Text className="text-text-title text-heading-s font-bold">
+                  {cardData[currentIndex].title}
+                </Text>
+                <Text className="text-text-title text-label-xs">
+                  {cardData[currentIndex].description}
+                </Text>
+              </Flex>
+            </motion.div>
+          </AnimatePresence>
 
-                <Flex vertical className="max-w-[440px] justify-center items-center gap-4">
-                  <Text className="text-heading-m font-bold text-text-title">{card.title}</Text>
-                  <Text className="text-body-s text-text-title">{card.description}</Text>
-                  <Flex className="contact-button mt-6 justify-center">
-                    <Button className="gradient-border-btn">
-                      <span>Read More</span>
-                    </Button>
-                  </Flex>
-                </Flex>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        </div>
+
+        {/* Right column: Next preview */}
+       <div className="right-column">
+        <div className="preview-wrapper">
+          {currentIndex < cardData.length - 1 && (
+            <motion.img
+              key={currentIndex + 1}
+              src={cardData[currentIndex + 1].img}
+              alt={cardData[currentIndex + 1].title}
+              className="preview-image"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.2, scale: 1 }}
+              transition={{ duration: 0.4 }}
+            />
+          )}
+        </div>
+
+        {/* Buttons stay at bottom */}
+        <div className="button-wrapper">
+          <Flex className="gap-2">
+            <Button
+              shape="circle"
+              icon={<LeftOutlined />}
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+            />
+            <Button
+              shape="circle"
+              icon={<RightOutlined />}
+              onClick={handleNext}
+              disabled={currentIndex === cardData.length - 1}
+            />
+          </Flex>
+        </div>
       </div>
-    </Flex>
+
+      </div>
+    </div>
   );
 };
 

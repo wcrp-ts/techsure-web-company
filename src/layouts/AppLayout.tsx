@@ -1,8 +1,9 @@
 import { Layout } from "antd"
 import { Outlet } from "react-router-dom"
 import AppHeader from "./AppHeader"
+import AppFooter from "./Footer"
 
-const { Content, Footer } = Layout
+const { Content } = Layout
 
 const AppLayout = () => {
   return (
@@ -13,9 +14,7 @@ const AppLayout = () => {
         <Outlet />
       </Content>
 
-      <Footer style={{ textAlign: "center" }}>
-        © {new Date().getFullYear()} My App
-      </Footer>
+      <AppFooter />
     </Layout>
   )
 }
