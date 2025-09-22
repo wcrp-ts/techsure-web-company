@@ -121,6 +121,48 @@ export default {
         l: '0px 4px 8px rgba(0, 0, 0, 0.15)',
         xl: '0px 8px 16px rgba(0, 0, 0, 0.2)',
       },
+       keyframes: {
+        scalePulse: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.1)" }, 
+        },
+        leftToRight: {
+          "0%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(80px)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        rightToLeft: {
+          "0%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-80px)" },
+          "100%": { transform: "translateX(0)" },
+        },
+         floatUpDown: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "10%": { transform: "translateY(-10px)" }, 
+        },
+         fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        fadeOut: {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
+      },
+      animation: {
+        scalePulse: "scalePulse 1.5s ease-in-out infinite",
+        leftToRight: "leftToRight 2s ease-in-out infinite",
+        rightToLeft: "rightToLeft 2s ease-in-out infinite",
+        floatUpDown: "floatUpDown 1.5s ease-in-out infinite",
+        fadeIn: "fadeIn 0.3s ease-in forwards",
+        fadeOut: "fadeOut 0.3s ease-out forwards",
+       },
+      transitionProperty: {
+        opacity: "opacity",
+      },
+      transitionDuration: {
+        300: "300ms",
+      },
     },
   },
 }

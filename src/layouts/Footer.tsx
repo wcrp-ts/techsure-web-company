@@ -8,48 +8,42 @@ const { Text } = Typography;
 
 const AppFooter = () => {
   return (
-    <footer 
-    style={{ backgroundColor: "#0e0e23", 
+    <Flex vertical
+      style={{ 
+        backgroundColor: "#0e0e23", 
         color: "#00001A", 
         padding: "24px 48px",
         zIndex: 99, 
-        position: "relative"  }}>
-      
-   
-   
-      <Space 
-        style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", width: "100%" }}
-        align="start"
-      >
-
-
-        <Flex vertical>
+        position: "relative"  
+      }}
+    >
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", flexDirection: "column", marginBottom: 24 }}>
           <div className="logo">
             <img src={techsureLogo} alt="Techsure Logo" style={{ height: 100 }} />
           </div>
-          <Text className="text-heading-xs font-bold text-text-title">Anything is possible at Techsure</Text>
+          <Text className="text-heading-xs font-bold text-text-title">
+            Anything is possible at Techsure
+          </Text>
           <Space>
             <PhoneOutlined style={{ color: "#fff" }} />
             <Text className="text-label-m text-text-title">+660 - 000 - 0000</Text>
           </Space>
           <Space>
             <LinkedinOutlined style={{ color: "#fff" }} />
-            <Text  className="text-label-m text-text-title">Techsure</Text>
+            <Text className="text-label-m text-text-title">Techsure</Text>
           </Space>
-        </Flex>
+        </div>
 
-   
-   
-        <Flex gap={24} className="mt-24 font-bold">
+        <div className="footer-links">
+           <Link to={PATH.home} style={{ color: "#fff" }}>Home</Link>
           <Link to={PATH.product} style={{ color: "#fff" }}>Product</Link>
-          <Link to={PATH.service} style={{ color: "#fff" }}>Service</Link>
-          <Link to={PATH.achievement} style={{ color: "#fff" }}>Achievement</Link>
+          {/* <Link to={PATH.service} style={{ color: "#fff" }}>Service</Link>
+          <Link to={PATH.achievement} style={{ color: "#fff" }}>Achievement</Link> */}
           <Link to={PATH.careers} style={{ color: "#fff" }}>Careers</Link>
           <Link to={PATH.contact} style={{ color: "#fff" }}>Contact</Link>
-        </Flex>
-      </Space>
-
-
+        </div>
+      </div>
 
       <Divider 
         style={{ 
@@ -60,12 +54,30 @@ const AppFooter = () => {
         }} 
       />
 
-     
-     
       <Text style={{ display: "block", textAlign: "center", fontSize: 12, color: "#999" }}>
         Copyright, All rights reserved © {new Date().getFullYear()}
       </Text>
-    </footer>
+
+      {/* Inline responsive styles */}
+      <style>
+        {`
+          .footer-links {
+            display: flex;
+            gap: 24px;
+            font-weight: bold;
+            flex-wrap: wrap;
+          }
+
+          @media (max-width: 768px) {
+            .footer-links {
+              flex-direction: column;
+              gap: 12px;
+              margin-top: 16px;
+            }
+          }
+        `}
+      </style>
+    </Flex>
   );
 };
 

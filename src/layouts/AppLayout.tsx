@@ -7,13 +7,18 @@ const { Content } = Layout
 
 const AppLayout = () => {
   return (
-    <Layout style={{ minHeight: "100vh" }} className="bg-background-default">
+    <Layout className="w-screen min-h-screen bg-background-default flex flex-col overflow-x-hidden">
+      {/* Header */}
       <AppHeader />
 
-      <Content >
-        <Outlet />
+      {/* Main content area */}
+      <Content className="flex-1 flex justify-center py-6">
+        <div className="w-full max-w-screen overflow-hidden">
+          <Outlet />
+        </div>
       </Content>
 
+      {/* Footer */}
       <AppFooter />
     </Layout>
   )

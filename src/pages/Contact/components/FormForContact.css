@@ -1,0 +1,38 @@
+.underline-form {
+  background: transparent;
+  padding: 0;
+}
+
+.underline-form .ant-input,
+.underline-form .ant-input-textarea {
+  border: none;
+  border-bottom: 1px solid #fff; 
+  border-radius: 0;
+  background: transparent;
+  color: #fff; 
+  padding: 8px 0;
+  transition: border-color 0.3s;
+}
+
+.underline-form .ant-input:focus,
+.underline-form .ant-input-textarea:focus {
+  border-bottom: 2px solid #8F1BE8; 
+  box-shadow: none;
+}
+
+.underline-form .ant-input::placeholder,
+.underline-form .ant-input-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+
+/* For outlined inputs with error, only when NOT disabled */
+.underline-form .ant-input-outlined.ant-input-status-error:not(.ant-input-disabled) {
+   background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--ant-line-width) var(--ant-line-type) var(--ant-color-error);
+  border-radius: 0; /* keep underline style */
+}
+

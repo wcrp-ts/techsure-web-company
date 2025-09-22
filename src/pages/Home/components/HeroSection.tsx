@@ -4,21 +4,24 @@ import { DownOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 
 const HeroSection = () => (
-  <div style={{ textAlign: "center", minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-    <Text className="text-hero-xl text-text-title font-bold">
+  <Flex vertical className="py-[160px] px-6" >
+    <Flex vertical align="center" justify="center">
+     <Text className="sm:text-hero-xl text-hero-l text-text-title font-bold text-center">
         Anything is <br /> possible
-    </Text>
+      </Text>
 
-    <Text className="text-body-l text-text-title mt-10">
-      We committed to develop IoT technology, robots, artificial intelligence (AI), <br />
-      and modern web systems to meet the needs of the industrial sector in Thailand.
-    </Text>
+      <Text className="text-body-l text-text-title mt-10 text-center">
+        We committed to develop IoT technology, robots, artificial intelligence (AI), <br />
+        and modern web systems to meet the needs of the industrial sector in Thailand.
+      </Text>
+
+    </Flex>
 
     <Flex vertical align="center" justify="center" className="mt-28">
       <Text className="text-body-l text-text-title">Scroll to learn more</Text>
-       <Button type="link" size="large" icon={<DownOutlined />} />
+       <Button type="link" size="large" className="animate-floatUpDown text-text-title" icon={<DownOutlined />} />
     </Flex>
-  </div>
+  </Flex>
 );
 
 export default HeroSection;

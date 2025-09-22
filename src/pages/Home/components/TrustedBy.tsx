@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Flex, Typography } from "antd";
 import kmitlLogo from "../../../assets/logo/kmitlLogo.png";
 import kuLogo from "../../../assets/logo/kuLogo.png";
 import craLogo from "../../../assets/logo/craLogo.png";
@@ -6,14 +6,16 @@ import nhaLogo from "../../../assets/logo/nhaLogo.png";
 import exatLogo from "../../../assets/logo/exatLogo.png";
 import irpcLogo from "../../../assets/logo/irpcLogo.png";
 import easyLogo from "../../../assets/logo/easyriceLogo.png";
+import vajiraLogo from "../../../assets/logo/VajiraLogo.png";
+import barameeLogo from "../../../assets/logo/BarameeLogo.png";
 
 const { Text } = Typography;
 
 
-const logos = [kmitlLogo, kuLogo, craLogo, nhaLogo, exatLogo, irpcLogo, easyLogo];
+const logos = [kmitlLogo, kuLogo, craLogo, nhaLogo, exatLogo, irpcLogo, easyLogo,vajiraLogo,barameeLogo];
 
 const TrustedBy = () => (
-  <div style={{ textAlign: "center", padding: "60px 20px" }}>
+   <Flex vertical align="center" justify="center" className="py-[80px] px-12 gap-6 " >
     <Text className="text-hero-xs font-bold text-text-title">Trusted By</Text>
 
     <div
@@ -35,7 +37,7 @@ const TrustedBy = () => (
         </div>
       ))}
     </div>
-  </div>
+  </Flex>
 );
 
 export default TrustedBy;

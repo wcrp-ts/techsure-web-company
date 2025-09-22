@@ -6,7 +6,7 @@ import ProjectText from "./ProjectText";
 import ProjectImage from "./ProjectImage";
 import { Link } from "react-router-dom";
 import PATH from "../../../../routes/path"
-import "../../../../layouts/AppHeader.css"
+
 
 export default function ProductSection() {
   const [index, setIndex] = useState(0);
