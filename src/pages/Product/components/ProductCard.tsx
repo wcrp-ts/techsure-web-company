@@ -1,6 +1,5 @@
 import { Flex, Typography } from "antd"
 import { motion } from "framer-motion"
-import { ArrowRightOutlined } from "@ant-design/icons"
 import GradientButton from "../../../components/GradientButton"
 
 const { Text } = Typography
