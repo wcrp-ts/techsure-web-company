@@ -4,9 +4,9 @@ import HeroSection from "./components/HeroSection";
 import TrustedBy from "./components/TrustedBy";
 import ValuesSection from "./components/ValuesSection";
 import ServicesSection from "./components/ServicesSection/ServicesSection";
-import ProductSection from "./components/ProductSection/ProductSection";
+// import ProductSection from "./components/ProductSection/ProductSection";
 import EventSection from "./components/EventSection/EventSection";
-import ScrollSliderSection from "./components/ScrollSliderSection";
+// import ScrollSliderSection from "./components/ScrollSliderSection";
 
 const Home = () => {
   const servicesRef = useRef<HTMLDivElement | null>(null);

@@ -10,7 +10,7 @@ const images = [mowerImage, dcimImage, air304Image, water304Image];
 const ProductSection = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<"down" | "up" | null>(null);
+  // const [scrollDirection, setScrollDirection] = useState<"down" | "up" | null>(null);
   const isThrottled = useRef(false);
   const lastScrollY = useRef(0);
 
@@ -22,7 +22,7 @@ const ProductSection = () => {
 
     const rect = section.getBoundingClientRect();
     if (!isInSection(rect)) {
-      setScrollDirection(null);
+      // setScrollDirection(null);
       return;
     }
 
@@ -31,7 +31,7 @@ const ProductSection = () => {
     lastScrollY.current = window.scrollY;
 
     // Update scroll direction (debug)
-    setScrollDirection(scrollingDown ? "down" : "up");
+    // setScrollDirection(scrollingDown ? "down" : "up");
 
     // Scroll progress for both directions
     const scrollProgressDown = (window.innerHeight - rect.top) / sectionHeight;
@@ -39,9 +39,9 @@ const ProductSection = () => {
 
     // Thresholds
     const downStart = 0.8;
-    const downStop = 1;
+    // const downStop = 1;
     const upStart = 0.8;
-    const upStop = 0;
+    // const upStop = 0;
 
     /** Debug lines (hidden) */
     // const downStartLine = section.querySelector<HTMLDivElement>(".debug-down-start");
