@@ -68,7 +68,7 @@ const Careers = () => (
           level="Junior - Mid Level"
           image={workingImage}
         />
-        <JobCard 
+        {/* <JobCard 
           title="UI/UX Designer"
           level="Mid Level"
           image={workingImage}
@@ -77,7 +77,7 @@ const Careers = () => (
           title="Project Manager"
           level="Senior"
           image={workingImage}
-        />
+        /> */}
       </div>
       </Flex>
   </Flex>
