@@ -2,6 +2,10 @@ body {
   @apply font-sans;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 .ant-typography,
 .ant-select,
 .ant-form-item-explain-error,
@@ -133,4 +137,28 @@ body {
     font-size: 12px;
   }
 }
+
+::-webkit-scrollbar {
+  width: 10px;            
+  height: 10px;           
+}
+
+::-webkit-scrollbar-track {
+  background: #00001A;      
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00001A;     
+  border-radius: 5px;       
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8b96a2;        
+}
+
+* {
+  scrollbar-width: thin;            
+  scrollbar-color: #8b96a2 #00001A;    
+}
+
 

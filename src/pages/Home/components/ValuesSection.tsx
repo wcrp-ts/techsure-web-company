@@ -33,7 +33,7 @@ const ValuesSection = () => {
   const isLarge = windowWidth >= 992; 
 
   return (
-     <Flex vertical align="center" justify="center" className="py-[160px] px-6" >
+     <Flex vertical align="center" justify="center" className="psm:py-[160px] py-[20px] px-6" >
       <Row
         justify="center"
         gutter={[24, 24]} 

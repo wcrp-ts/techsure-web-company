@@ -25,28 +25,51 @@ const cardData = [
   { img: image4, title: "Make others successful.", description: "Growing together is the ultimate compliment..." },
 ];
 
-const CARD_WIDTH = 860;
 const CARD_GAP = 16;
-const AUTO_SLIDE_INTERVAL = 3000; 
+const AUTO_SLIDE_INTERVAL = 3000;
 
 const EventSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(860); 
 
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length); 
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
     }, AUTO_SLIDE_INTERVAL);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
+  }, []);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth < 640) {
+        setCardWidth(screenWidth * 0.9); 
+      } else if (screenWidth < 1024) {
+        setCardWidth(600); 
+      } else {
+        setCardWidth(860); 
+      }
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className="event-section-container py-48">
       <Flex vertical align="center" justify="center">
-        <Text className="text-hero-xs font-bold text-text-title text-center">Our Achievement and Event</Text>
+        <Text className="text-hero-xs font-bold text-text-title text-center">
+          Our Achievement and Event
+        </Text>
       </Flex>
-  
+
+    
       <div
         style={{
           width: "100%",
@@ -61,18 +84,38 @@ const EventSection = () => {
             display: "flex",
             gap: `${CARD_GAP}px`,
             transition: "transform 0.3s ease",
-            transform: `translateX(calc(-${currentIndex * (CARD_WIDTH + CARD_GAP)}px + 50% - ${CARD_WIDTH / 2}px))`,
+            transform: `translateX(calc(-${currentIndex * (cardWidth + CARD_GAP)}px + 50% - ${cardWidth / 2}px))`,
           }}
         >
           {cardData.map((data, index) => (
-            <CardItem
-              key={index}
-              {...data}
-              scale={index === currentIndex ? 1 : 0.8}
-              opacity={index === currentIndex ? 1 : 0.4}
-            />
+            <div key={index} style={{ flex: "0 0 auto", width: cardWidth }}>
+              <CardItem
+                {...data}
+                scale={index === currentIndex ? 1 : 0.8}
+                opacity={index === currentIndex ? 1 : 0.4}
+              />
+            </div>
           ))}
         </div>
+      </div>
+
+  
+      <div className="flex justify-center mt-6 gap-3">
+        {cardData.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            style={{
+              width: "40px",
+              height: "5px",
+              borderRadius: "2px",
+              backgroundColor: index === currentIndex ? "#FFF" : "#114D8C",
+              border: "none",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease",
+            }}
+          />
+        ))}
       </div>
     </div>
   );

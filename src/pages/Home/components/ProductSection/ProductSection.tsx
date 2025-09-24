@@ -1,110 +1,103 @@
-import  { useEffect, useRef, useState } from "react";
-import { Button} from "antd";
-import { AnimatePresence } from "framer-motion";
-import { projects } from "./projectsData";
-import ProjectText from "./ProjectText";
-import ProjectImage from "./ProjectImage";
-import { Link } from "react-router-dom";
-import PATH from "../../../../routes/path"
+import { useEffect, useRef, useState } from "react";
+import mowerImage from "../../../../assets/project/mower.png";
+import dcimImage from "../../../../assets/project/dcim.png";
+import air304Image from "../../../../assets/project/air304.png";
+import water304Image from "../../../../assets/project/water304.png";
+import "./ProductSection.css";
 
+const images = [mowerImage, dcimImage, air304Image, water304Image];
 
-export default function ProductSection() {
-  const [index, setIndex] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-  const [released, setReleased] = useState(false);
-
+const ProductSection = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const lastWheelTimeRef = useRef<number>(0);
-  const directionRef = useRef<number>(1);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState<"down" | "up" | null>(null);
+  const isThrottled = useRef(false);
+  const lastScrollY = useRef(0);
 
-  // IntersectionObserver
+  const isInSection = (rect: DOMRect) => rect.top < window.innerHeight && rect.bottom > 0;
+
+  const handleWheel = (event: WheelEvent) => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+    if (!isInSection(rect)) {
+      setScrollDirection(null);
+      return;
+    }
+
+    const sectionHeight = rect.height;
+    const scrollingDown = window.scrollY > lastScrollY.current;
+    lastScrollY.current = window.scrollY;
+
+    // Update scroll direction (debug)
+    setScrollDirection(scrollingDown ? "down" : "up");
+
+    // Scroll progress for both directions
+    const scrollProgressDown = (window.innerHeight - rect.top) / sectionHeight;
+    const scrollProgressUp = rect.bottom / sectionHeight;
+
+    // Thresholds
+    const downStart = 0.8;
+    const downStop = 1;
+    const upStart = 0.8;
+    const upStop = 0;
+
+    /** Debug lines (hidden) */
+    // const downStartLine = section.querySelector<HTMLDivElement>(".debug-down-start");
+    // const downStopLine = section.querySelector<HTMLDivElement>(".debug-down-stop");
+    // const upStartLine = section.querySelector<HTMLDivElement>(".debug-up-start");
+    // const upStopLine = section.querySelector<HTMLDivElement>(".debug-up-stop");
+    // const dirLine = section.querySelector<HTMLDivElement>(".debug-direction");
+
+    // if (downStartLine) downStartLine.style.top = `${downStart * 100}%`;
+    // if (downStopLine) downStopLine.style.top = `${downStop * 100}%`;
+    // if (upStartLine) upStartLine.style.top = `${upStart * 100}%`;
+    // if (upStopLine) upStopLine.style.top = `${upStop * 100}%`;
+    // if (dirLine) dirLine.textContent = scrollingDown ? "Scrolling Down" : "Scrolling Up";
+
+    // Lock scroll until threshold
+    if (scrollingDown && scrollProgressDown < downStart) return;
+    if (!scrollingDown && scrollProgressUp < upStart) return;
+
+    // Change slide index
+    if ((event.deltaY > 0 && currentIndex < images.length - 1) ||
+        (event.deltaY < 0 && currentIndex > 0)) {
+      event.preventDefault();
+      if (isThrottled.current) return;
+
+      setCurrentIndex(prev => (event.deltaY > 0 ? prev + 1 : prev - 1));
+      isThrottled.current = true;
+      setTimeout(() => (isThrottled.current = false), 150);
+    }
+  };
+
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-        setReleased(false);
-      },
-      { threshold: 0.8}
-    );
-    if (sectionRef.current) obs.observe(sectionRef.current);
-    return () => obs.disconnect();
-  }, []);
-
-  // Prevent body scroll
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    if (isInView && !released) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = prev || "";
-    return () => { document.body.style.overflow = prev || ""; };
-  }, [isInView, released]);
-
-  // Wheel event
-  useEffect(() => {
-    const threshold = 40;
-    const cooldown = 500;
-
-    const onWheel = (e: WheelEvent) => {
-      if (!isInView || released) return;
-      const now = Date.now();
-      if (now - lastWheelTimeRef.current < cooldown) return;
-
-      if (e.deltaY > threshold) {
-        if (index < projects.length - 1) {
-          e.preventDefault();
-          directionRef.current = 1;
-          setIndex((i) => i + 1);
-        } else {
-          setReleased(true);
-        }
-        lastWheelTimeRef.current = now;
-      } else if (e.deltaY < -threshold) {
-        if (index > 0) {
-          e.preventDefault();
-          directionRef.current = -1;
-          setIndex((i) => i - 1);
-        } else {
-          setReleased(true);
-        }
-        lastWheelTimeRef.current = now;
-      }
-    };
-
-    window.addEventListener("wheel", onWheel, { passive: false });
-    return () => window.removeEventListener("wheel", onWheel as any);
-  }, [isInView, released, index]);
-
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => window.removeEventListener("wheel", handleWheel);
+  }, [currentIndex]);
 
   return (
-   <section
-      ref={sectionRef}
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden"
-    >
-      <div className="flex w-full items-start justify-between">
-        <div className="flex-1 flex flex-col gap-4 pl-44">
-          <ProjectText project={projects[index]} />
-        </div>
-        <div className="flex-1 flex justify-end items-start">
-          <div className="w-[820px] h-[520px] relative overflow-hidden rounded-l-2xl">
-            <AnimatePresence initial={false} custom={directionRef.current}>
-              <ProjectImage
-                key={`${projects[index].title}-${index}`}
-                project={projects[index]}
-                direction={directionRef.current}
-              />
-            </AnimatePresence>
-          </div>
-        </div>
+    <div className="product-section-container bg-background-brand" ref={sectionRef}>
+      {/** Debug lines hidden */}
+      <div className="debug-down-start" />
+      <div className="debug-down-stop" />
+      <div className="debug-up-start" />
+      <div className="debug-up-stop" />
+      <div className="debug-direction" />
+
+      <div className="product-section-inner">
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`product-${index}`}
+            className={`product-image ${index === currentIndex ? "active" : ""}`}
+          />
+        ))}
       </div>
-
-      <div className="contact-button absolute bottom-16 right-32">
-      <Link to={PATH.product}>
-          <Button className="gradient-border-btn">
-            <span>See all project</span>
-          </Button>
-        </Link>
     </div>
-
-    </section>
-
   );
-}
+};
+
+export default ProductSection;

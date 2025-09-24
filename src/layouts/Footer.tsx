@@ -2,7 +2,7 @@ import { PhoneOutlined, LinkedinOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Space, Typography, Divider, Flex } from "antd";
 import PATH from "../routes/path"; 
-import techsureLogo from "../assets/Techsure_logo.png";
+import techsureLogo from "../assets/Techsure_logo.svg";
 
 const { Text } = Typography;
 

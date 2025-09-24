@@ -64,7 +64,7 @@ const MovingCircle= ({ hideOnRef, threshold = 0.2 }:MovingCircleProps) => {
             pointerEvents: "none",
             translateX: "-50%",
             translateY: "-50%",
-            zIndex: 10,
+            zIndex: 30,
           }}
         />
       )}

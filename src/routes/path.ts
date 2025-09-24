@@ -5,6 +5,8 @@ const PATH = {
   achievement: "/achievement",
   careers: "/careers",
   contact: "/contact",
+  jobDescription: "/jobDiscription",
+  
 }
 
 export default PATH

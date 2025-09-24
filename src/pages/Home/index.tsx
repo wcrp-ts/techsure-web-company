@@ -6,6 +6,7 @@ import ValuesSection from "./components/ValuesSection";
 import ServicesSection from "./components/ServicesSection/ServicesSection";
 import ProductSection from "./components/ProductSection/ProductSection";
 import EventSection from "./components/EventSection/EventSection";
+import ScrollSliderSection from "./components/ScrollSliderSection";
 
 const Home = () => {
   const servicesRef = useRef<HTMLDivElement | null>(null);
@@ -14,16 +15,19 @@ const Home = () => {
     <div>
       <MovingCircle hideOnRef={servicesRef} />
 
-      <div style={{ position: "relative", zIndex: 50 }}>
+      <div style={{ position: "relative", zIndex: 30 }}>
         <HeroSection />
         <TrustedBy />
         <ValuesSection />
         
         <div ref={servicesRef}>
           <ServicesSection />
-          <ProductSection />
-          <EventSection />
+          {/* <ProductSection />
+           <ScrollSliderSection /> */}
         </div>
+        
+
+         <EventSection />
       </div>
     </div>
   );

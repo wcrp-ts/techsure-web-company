@@ -7,6 +7,7 @@ import Service from "../pages/Service"
 import Achievement from "../pages/Achievement"
 import Careers from "../pages/Careers"
 import Contact from "../pages/Contact"
+import JobDescription from "../pages/JobDiscription"
 
 const routes = [
   {
@@ -20,6 +21,7 @@ const routes = [
       { path: PATH.achievement, element: <Achievement /> },
       { path: PATH.careers, element: <Careers /> },
       { path: PATH.contact, element: <Contact /> },
+      { path: PATH.jobDescription, element: <JobDescription/> },
     ],
   },
 ]

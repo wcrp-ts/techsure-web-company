@@ -4,7 +4,7 @@ import { DownOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 
 const HeroSection = () => (
-  <Flex vertical className="py-[160px] px-6" >
+  <Flex vertical className="sm:py-[160px] py-[50px] px-6" >
     <Flex vertical align="center" justify="center">
      <Text className="sm:text-hero-xl text-hero-l text-text-title font-bold text-center">
         Anything is <br /> possible

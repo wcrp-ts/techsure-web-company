@@ -2,8 +2,9 @@ import mowerImage from "../../../assets/project/mower.png";
 import dcimImage from "../../../assets/project/dcim.png";
 import air304Image from "../../../assets/project/air304.png";
 import water304Image from "../../../assets/project/water304.png";
+import smartBin from "../../../assets/project/smartBin.jpg"
+import demisIoT from "../../../assets/project/DEMISIoT.jpg"
 import trafficDashboard from "../../../assets/project/traffic-dashboard.png";
-import cameraPlatform from "../../../assets/project/camera-platform.png";
 import workforce from "../../../assets/project/workforce.png";
 import inspection from "../../../assets/project/inspection.png"
 import multispectral from "../../../assets/project/multispectral.png";
@@ -48,18 +49,25 @@ export const projectData: Project[] = [
     tags: ["IoT", "Web"],
   },
   {
+    image: smartBin,
+    title: "Smart Bin",
+    description:
+      "An AI and IoT-powered waste separation system that uses a camera and an integrated AI model to automatically identify and sort different types of waste.",
+    tags: ["AI", "IoT","App"],
+  },
+  {
+    image: demisIoT,
+    title: "DEMIS IoT ",
+    description:
+      "A smart boxing dummy equipped with impact sensors and real-time data analysis, designed to act as a smart sparring partner for enhanced athletic training.",
+    tags: ["AI", "IoT", "Robotic","App"]
+  },
+  {
     image: trafficDashboard,
     title: "Traffic Dashboard Web",
     description:
       "A web-based platform that visualizes traffic data, providing insights for traffic management and smart city planning.",
     tags: ["IoT", "Web"],
-  },
-  {
-    image: cameraPlatform,
-    title: "Intelligence Camera Management Platform",
-    description:
-      "A centralized platform for AI-powered video analytics, real-time monitoring, and camera management in smart security systems.",
-    tags: ["AI", "IoT", "Web"],
   },
   {
     image: workforce,
@@ -73,7 +81,7 @@ export const projectData: Project[] = [
     title: "Inspection Visual Box Software",
     description:
       "A testing platform for vehicles equipped with gas, sound, smoke, RPM, and light sensors, ensuring accurate and efficient inspection.",
-    tags: ["AI", "IoT", "Web"],
+    tags: ["IoT", "Web"],
   },
   {
     image: multispectral,

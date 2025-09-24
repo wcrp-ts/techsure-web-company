@@ -15,43 +15,48 @@ const CardItem = ({ img, title, description, scale = 1, opacity = 1 }: CardItemP
   return (
     <motion.div
       style={{
-        width: "860px",
-        height: "400px",
-        padding: "24px",
+        width: "100%",
+        maxWidth: "860px",
+        minHeight: "320px",
         display: "flex",
-        background: "#0A2643",
+       background: "rgba(10, 38, 67, 0.49)", 
         borderRadius: "16px",
+        border: "1px solid  #8F1BE8",
+        backdropFilter: "blur(2px)", 
         boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
         overflow: "hidden",
         scale,
         opacity,
         flexShrink: 0,
       }}
+      className="flex flex-col md:flex-row p-3 md:p-6" 
     >
-      {/* Left image */}
-      <div style={{ width: "360px", height: "100%", flexShrink: 0 }}>
+  
+      <div className="w-full md:w-[360px] h-[200px] md:h-auto flex-shrink-0">
         <img
           src={img}
           alt={title}
-          style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px" }}
+          className="w-full h-full object-cover rounded-xl"
         />
       </div>
 
-      {/* Right text */}
-      <div
-        style={{
-          flex: 1,
-          marginLeft: "24px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Flex vertical className="gap-4 justify-center items-center">
-            <Text className="text-heading-s font-bold text-text-title">
+      <div className="flex-1 mt-4 md:mt-0 md:ml-6 flex flex-col justify-center">
+        <Flex vertical className="gap-4 justify-center items-center md:items-start">
+          <Text className="text-heading-s font-bold text-text-title text-center md:text-left">
             {title}
-            </Text>
-            <Text className="text-label-s text-text-title text-center">{description}</Text>
+          </Text>
+          <Text
+            className="text-label-s text-text-title text-center md:text-left"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 4, 
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {description}
+          </Text>
         </Flex>
       </div>
     </motion.div>
