@@ -1,5 +1,5 @@
 import { Flex, Typography } from "antd"
-import workingImage from "../../assets/Image.png" 
+import workingImage from "../../assets/ImageWorking.png" 
 import JobCard from "./components/JobCard"
 import bgPage from "../../assets/bgCareers.png"
 import BenefitsSection from "./components/BenefitsSection"

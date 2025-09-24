@@ -3,8 +3,8 @@ import { Typography, Flex } from "antd";
 import CardItem from "./CardItem";
 import DEMISIoT from "../../../../assets/event/DEMIS_IoT.jpg";
 import SmartBin from "../../../../assets/event/smartBin.jpg";
-import image3 from "../../../../assets/project/mower.png";
-import image4 from "../../../../assets/project/water304.png";
+import Meesook from "../../../../assets/event/MeesookEvent.png";
+
 
 const { Text } = Typography;
 
@@ -21,9 +21,10 @@ const cardData = [
     description:
       "At the KMITL Smart Campus event, we are proud to introduce our Smart Bin, an innovative solution that combines artificial intelligence (AI) with IoT technology to revolutionize waste separation. This system uses a camera and an integrated AI model to automatically identify and sort waste ",
   },
-  { img: image3, title: "Take responsibility.", description: "This requires trust in ourselves and in cooperation..." },
-  { img: image4, title: "Make others successful.", description: "Growing together is the ultimate compliment..." },
-];
+  { img: Meesook,
+    title: "AGV (Mover)", 
+    description: "At the Meesook farm, we are proud to present the AGV (Mover), an intelligent autonomous ground vehicle that combines an advanced mower and multispectral imaging for precision agriculture and efficient field management." },
+]
 
 const CARD_GAP = 16;
 const AUTO_SLIDE_INTERVAL = 3000;
