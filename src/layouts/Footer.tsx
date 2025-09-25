@@ -18,21 +18,36 @@ const AppFooter = () => {
       }}
     >
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", flexDirection: "column", marginBottom: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", marginBottom: 12 }}>
           <div className="logo">
             <img src={techsureLogo} alt="Techsure Logo" style={{ height: 100 }} />
           </div>
-          <Text className="text-heading-xs font-bold text-text-title">
+          <Flex vertical gap={4}>
+          <Text className="text-heading-xs font-bold text-text-title mt-4">
             Anything is possible at Techsure
           </Text>
           <Space>
             <PhoneOutlined style={{ color: "#fff" }} />
-            <Text className="text-label-m text-text-title">+660 - 000 - 0000</Text>
+            <Text className="text-label-m text-text-title">0639542989</Text>
           </Space>
           <Space>
-            <LinkedinOutlined style={{ color: "#fff" }} />
-            <Text className="text-label-m text-text-title">Techsure</Text>
+            <PhoneOutlined style={{ color: "#fff" }} />
+            <Text className="text-label-m text-text-title">0633658989</Text>
           </Space>
+          <Space>
+            <a 
+            href="https://www.linkedin.com/company/techsure" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={{ color: "#fff", textDecoration: "none" }}
+          >
+            <Space>
+              <LinkedinOutlined style={{ color: "#fff" }} />
+              <Text className="text-label-m text-text-title">Techsure</Text>
+            </Space>
+          </a>
+          </Space>
+          </Flex>
         </div>
 
         <div className="footer-links">
